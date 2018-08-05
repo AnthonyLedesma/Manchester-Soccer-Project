@@ -1,0 +1,20 @@
+import firebase from 'firebase/app';
+import 'firebase/app';
+import 'firebase/database';
+
+const config = {
+    apiKey: "AIzaSyBJE-wLIQ6D68jQo7XcVAVggo1fcP3xfvQ",
+    authDomain: "manchester-soccer-project.firebaseapp.com",
+    databaseURL: "https://manchester-soccer-project.firebaseio.com",
+    projectId: "manchester-soccer-project",
+    storageBucket: "manchester-soccer-project.appspot.com",
+    messagingSenderId: "385866759216"
+  };
+
+firebase.initializeApp(config);
+
+const firebaseDB = firebase.database();
+
+firebaseDB.ref('matches').once('value').then((snapshot)=>{
+    console.log(snapshot.val());
+})
