@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { easePolyOut } from 'd3-ease';
 import Animate from 'react-move/Animate';
-import Oramendi from '../../../Resources/images/players/Otamendi.png'
+import OtamendiImg from '../../../Resources/images/players/Otamendi.png';
+import PlayerCard from '../../ui/PlayerCard';
 
 
 class HomeCards extends Component {
@@ -33,10 +34,14 @@ class HomeCards extends Component {
             >
                 {({ left, bottom })=> {
                     return(
-                        <div
-                            style={{position: 'absolute',left,bottom}}
-                        
-                        >div</div>
+                        <div style={{position: 'absolute',left,bottom}}>
+                        <PlayerCard
+                            number="30"
+                            name="Nicholas"
+                            lastname="Otamendi"
+                            bck={OtamendiImg}
+                        />
+                        </div>
                     )
                 }}
             </Animate>
