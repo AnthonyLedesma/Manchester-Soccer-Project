@@ -37,3 +37,23 @@ export const reverseArray = (actualArray) => {
     }
     return reversedArray;
 }
+
+
+export const validate = (element) => {
+    let error = [true, ''];
+
+    if(element.validation.email){
+        // eslint-disable-next-line
+        const regularExp = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        const valid = regularExp.test(element.value);
+        const message = `${!valid ? 'This must be a valid email address':''}`;
+        error = !valid ? [valid,message]: error;
+    }
+
+    if (element.validation.required) {
+        const valid = element.value.trim() !== '';
+        const message = `${!valid ? 'This field is required':''}`;
+        error = !valid ? [valid,message]: error
+    }
+    return error;
+}
