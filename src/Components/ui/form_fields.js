@@ -14,6 +14,12 @@ const FormField = ({ formdata, id, change }) => {
             case ('input'):
                 formTemplate = (
                     <div>
+                        { formdata.showLabel ?
+                        <div className="label_input">
+                            {formdata.config.label}
+                        </div>    
+                    :null
+                    }
                         <input {...formdata.config} 
                         value={formdata.value}
                         onChange={(event)=>change(event,id)}
