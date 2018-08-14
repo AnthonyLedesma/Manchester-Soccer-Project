@@ -78,7 +78,7 @@ class SignIn extends Component {
             firebase.auth()
             .signInWithEmailAndPassword(dataToSubmit.email,dataToSubmit.password)
             .then(() => {
-                    console.log('user is authenticated')
+                    this.props.history.push('/dashboard');
                 }).catch(error => {
                     this.setState({
                         formError: true
