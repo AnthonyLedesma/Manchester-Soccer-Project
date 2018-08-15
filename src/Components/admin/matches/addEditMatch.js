@@ -45,7 +45,7 @@ class AddEditMatch extends Component {
                 },
                 valid: false,
                 validationMessage: '',
-                showLabel: true
+                showLabel: false
             },
             resultLocal: {
                 element: 'input',
@@ -76,7 +76,7 @@ class AddEditMatch extends Component {
                 },
                 valid: false,
                 validationMessage: '',
-                showLabel: true
+                showLabel: false
             },
             resultAway: {
                 element: 'input',
@@ -148,7 +148,7 @@ class AddEditMatch extends Component {
                 element: 'select',
                 value: '',
                 config: {
-                    label: 'Games Played ?',
+                    label: 'Game already played?',
                     name: 'select_final',
                     type: 'select',
                     options: [
@@ -310,6 +310,7 @@ class AddEditMatch extends Component {
                             />
 
                             <div className="select_team_layout">
+                            <div className="label_inputs">Local</div>
                                 <div className="wrapper">
                                     <div className="left">
                                         <FormField
@@ -329,6 +330,7 @@ class AddEditMatch extends Component {
                             </div>
 
                             <div className="select_team_layout">
+                            <div className="label_inputs">Away</div>
                                 <div className="wrapper">
                                     <div className="left">
                                         <FormField
