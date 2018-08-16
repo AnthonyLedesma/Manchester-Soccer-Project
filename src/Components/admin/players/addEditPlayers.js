@@ -157,7 +157,6 @@ class AddEditPlayers extends Component {
         if (defaultImg === ''){
             defaultImg = defaultPlayerImage;
         }
-        console.log(defaultImg);
         for(let key in newFormdata){
             newFormdata[key].value = player[key];
             newFormdata[key].valid = true;
@@ -187,7 +186,6 @@ class AddEditPlayers extends Component {
                 .then( url => {
                     this.updateFields(playerData,playerId,'Edit player',url)
                 }).catch(e=>{
-                    console.log(e);
                     this.updateFields(playerData,playerId,'Edit player','')
                 })
             })
