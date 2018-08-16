@@ -6,6 +6,7 @@ import FormField from '../../ui/form_fields';
 import { firebaseDB, firebasePlayers, firebase } from '../../../firebase';
 
 import Fileuploader from '../../ui/file_uploader';
+import defaultPlayerImage from '../../../Resources/images/stock_player_image.jpg';
 
 
 
@@ -150,6 +151,25 @@ class AddEditPlayers extends Component {
             })
         }
     }
+    
+    updateFields = (player,playerId,formType,defaultImg) => {
+        const newFormdata = {...this.state.formdata}
+        if (defaultImg === ''){
+            defaultImg = defaultPlayerImage;
+        }
+        console.log(defaultImg);
+        for(let key in newFormdata){
+            newFormdata[key].value = player[key];
+            newFormdata[key].valid = true;
+        }
+
+        this.setState({
+            playerId,
+            defaultImg,
+            formType,
+            formdata: newFormdata
+        })
+    }
 
     componentDidMount() {
         const playerId = this.props.match.params.id;
@@ -159,8 +179,17 @@ class AddEditPlayers extends Component {
                 formType: 'Add Player'
             })
         } else {
-            this.setState({
-                formType: 'Edit Player'
+            firebaseDB.ref(`players/${playerId}`).once('value')
+            .then((snapshot) => {
+                const playerData = snapshot.val();
+                firebase.storage().ref('/players/')
+                .child(playerData.image).getDownloadURL()
+                .then( url => {
+                    this.updateFields(playerData,playerId,'Edit player',url)
+                }).catch(e=>{
+                    console.log(e);
+                    this.updateFields(playerData,playerId,'Edit player','')
+                })
             })
         }
     }
