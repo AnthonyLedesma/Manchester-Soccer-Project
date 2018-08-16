@@ -74,7 +74,6 @@ class SignIn extends Component {
         }
 
         if (formIsValid) {
-            console.log(firebase);
             firebase.auth()
             .signInWithEmailAndPassword(dataToSubmit.email,dataToSubmit.password)
             .then(() => {

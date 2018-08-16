@@ -9,24 +9,24 @@ class Text extends Component {
         <Animate
             show={true}
             start={{
-                opacity:0,
-                rotate:0
+                opacity: 0,
+                rotate: 0
             }}
             enter={{
-                opacity:[1],
-                rotate:[360],
-                timing:{duration: 1000, ease:easePolyOut}
+                opacity: [1],
+                rotate: [360],
+                timing: { duration: 1000, ease: easePolyOut }
             }}
         >
-            {({opacity, rotate})=>{
-                return(
+            {({ opacity, rotate }) => {
+                return (
                     <div className="featured_number"
                         style={{
                             opacity,
                             transform: `translate(260px,170px) rotateY(${rotate}deg)`
                         }}
                     >
-                    3
+                        3
                     </div>
                 )
             }}
@@ -37,26 +37,26 @@ class Text extends Component {
         <Animate
             show={true}
             start={{
-                opacity:0,
-                x:503,
-                y:450
+                opacity: 0,
+                x: 503,
+                y: 450
             }}
             enter={{
-                opacity:[1],
-                x:[273],
-                y:[450],
-                timing:{duration: 1000, ease:easePolyOut}
+                opacity: [1],
+                x: [273],
+                y: [450],
+                timing: { duration: 1000, ease: easePolyOut }
             }}
         >
-            {({opacity, x,y})=>{
-                return(
+            {({ opacity, x, y }) => {
+                return (
                     <div className="featured_first"
                         style={{
                             opacity,
                             transform: `translate(${x}px,${y}px)`
                         }}
                     >
-                    League
+                        League
                     </div>
                 )
             }}
@@ -67,26 +67,26 @@ class Text extends Component {
         <Animate
             show={true}
             start={{
-                opacity:0,
-                x:503,
-                y:586
+                opacity: 0,
+                x: 503,
+                y: 586
             }}
             enter={{
-                opacity:[1],
-                x:[273],
-                y:[586],
-                timing:{delay:300, duration: 1000, ease:easePolyOut}
+                opacity: [1],
+                x: [273],
+                y: [586],
+                timing: { delay: 300, duration: 1000, ease: easePolyOut }
             }}
         >
-            {({opacity, x,y})=>{
-                return(
+            {({ opacity, x, y }) => {
+                return (
                     <div className="featured_second"
                         style={{
                             opacity,
                             transform: `translate(${x}px,${y}px)`
                         }}
                     >
-                    Championships
+                        Championships
                     </div>
                 )
             }}
@@ -97,17 +97,17 @@ class Text extends Component {
         <Animate
             show={true}
             start={{
-                opacity:0
+                opacity: 0
             }}
             enter={{
-                opacity:[1],
-                x:[273],
-                y:[586],
-                timing:{delay:800, duration: 1000, ease:easePolyOut}
+                opacity: [1],
+                x: [273],
+                y: [586],
+                timing: { delay: 800, duration: 1000, ease: easePolyOut }
             }}
         >
-            {({opacity})=>{
-                return(
+            {({ opacity }) => {
+                return (
                     <div className="featured_player"
                         style={{
                             opacity,
@@ -115,7 +115,7 @@ class Text extends Component {
                             transform: `translate(550px,201px)`
                         }}
                     >
-                    
+
                     </div>
                 )
             }}
@@ -129,7 +129,7 @@ class Text extends Component {
                 {this.animateNumber()}
                 {this.animateFirst()}
                 {this.animateSecond()}
-                
+
             </div>
         );
     }

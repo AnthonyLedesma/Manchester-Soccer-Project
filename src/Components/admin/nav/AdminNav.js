@@ -31,14 +31,14 @@ const AdminNav = () => {
     }
 
     const renderItems = () => {
-        return(
-        links.map(link => (
-            <Link to={link.linkTo} key={link.title}>
-                <ListItem button style={style}>
-                    {link.title}
-                </ListItem>
-            </Link>
-        )));
+        return (
+            links.map(link => (
+                <Link to={link.linkTo} key={link.title}>
+                    <ListItem button style={style}>
+                        {link.title}
+                    </ListItem>
+                </Link>
+            )));
     }
 
     const logoutHandler = () => {
@@ -52,7 +52,7 @@ const AdminNav = () => {
     return (
         <div>
             {renderItems()}
-            <ListItem button style={style} onClick={()=> logoutHandler()}>
+            <ListItem button style={style} onClick={() => logoutHandler()}>
                 Log out
             </ListItem>
         </div>

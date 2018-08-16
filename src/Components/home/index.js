@@ -7,10 +7,10 @@ import Promotion from './promotion';
 const Home = () => {
     return (
         <div className="bck_blue">
-            <Featured/>
-            <MatchesHome/>
-            <MeetPlayers/>
-            <Promotion/>
+            <Featured />
+            <MatchesHome />
+            <MeetPlayers />
+            <Promotion />
         </div>
     );
 };

@@ -12,7 +12,7 @@ class Enroll extends Component {
         formSuccess: '',
         formdata: {
             email: {
-                element:'input',
+                element: 'input',
                 value: '',
                 config: {
                     name: 'email_input',
@@ -29,29 +29,29 @@ class Enroll extends Component {
         }
     }
 
-    resetFormSuccess(type){
+    resetFormSuccess(type) {
         const newFormdata = { ...this.state.formdata };
 
-        for(let key in newFormdata){
+        for (let key in newFormdata) {
             newFormdata[key].value = '';
             newFormdata[key].valid = false;
             newFormdata[key].validationMessage = '';
-        
+
         }
         this.setState({
-            formError:false,
+            formError: false,
             formdata: newFormdata,
             formSuccess: type ? 'Congratulations' : 'Already on the database'
         });
         this.successMessage();
     }
 
-    successMessage(){
-        setTimeout(()=>{
+    successMessage() {
+        setTimeout(() => {
             this.setState({
                 formSuccess: ''
             })
-        },2000)
+        }, 2000)
     }
 
     updateForm(element, id) {
@@ -63,10 +63,10 @@ class Enroll extends Component {
         let validData = validate(newElement);
         newElement.valid = validData[0];
         newElement.validationMessage = validData[1];
-        
+
         newFormdata[id] = newElement;
 
-        
+
         this.setState({
             formError: false,
             formdata: newFormdata
@@ -79,21 +79,21 @@ class Enroll extends Component {
         let dataToSubmit = {};
         let formIsValid = true;
 
-        for(let key in this.state.formdata) {
+        for (let key in this.state.formdata) {
             dataToSubmit[key] = this.state.formdata[key].value;
             formIsValid = this.state.formdata[key].valid && formIsValid;
-            }
+        }
 
-        if(formIsValid){
-            firebasePromotions.orderByChild('email').equalTo(dataToSubmit.email).once("value").then((snapshot)=>{
-                if(snapshot.val() === null){
+        if (formIsValid) {
+            firebasePromotions.orderByChild('email').equalTo(dataToSubmit.email).once("value").then((snapshot) => {
+                if (snapshot.val() === null) {
                     firebasePromotions.push(dataToSubmit);
                     this.resetFormSuccess(true);
                 } else {
                     this.resetFormSuccess(false);
                 }
             })
-            
+
         } else {
             this.setState({
                 formError: true
@@ -113,15 +113,15 @@ class Enroll extends Component {
                                 formdata={this.state.formdata.email}
                                 change={(element, id) => this.updateForm(element, id)}
                             />
-                            { this.state.formError ? 
-                                <div className="error_label">Something is wrong, try again.</div> 
-                                :null
+                            {this.state.formError ?
+                                <div className="error_label">Something is wrong, try again.</div>
+                                : null
                             }
 
                             <div className="success_label">{this.state.formSuccess}</div>
-                            <button onClick={(event)=> this.submitForm(event)}>Enroll</button>
+                            <button onClick={(event) => this.submitForm(event)}>Enroll</button>
                             <div className="enroll_discl">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                             </div>
                         </div>
                     </form>

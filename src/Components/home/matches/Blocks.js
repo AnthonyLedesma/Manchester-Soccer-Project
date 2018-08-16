@@ -11,27 +11,27 @@ class Blocks extends Component {
     }
 
     componentDidMount() {
-        firebaseMatches.limitToLast(6).once('value').then((snapshot)=>{
+        firebaseMatches.limitToLast(6).once('value').then((snapshot) => {
             const matches = firebaseLooper(snapshot);
             this.setState({
                 matches: reverseArray(matches)
             })
         })
     }
-    
+
     showMatches = (matches) => (
-        matches ? 
-        matches.map((match)=>(
-            <Slide bottom key={match.id}>
-                <div className="item">
-                    <div className="wrapper">
-                        <MatchesBlock match={match}/>
+        matches ?
+            matches.map((match) => (
+                <Slide bottom key={match.id}>
+                    <div className="item">
+                        <div className="wrapper">
+                            <MatchesBlock match={match} />
+                        </div>
                     </div>
-                </div>
-            </Slide>
-            
-        ))
-        :null
+                </Slide>
+
+            ))
+            : null
     )
 
     render() {

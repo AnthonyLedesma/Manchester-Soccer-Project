@@ -7,16 +7,16 @@ import HomeCards from './cards';
 class MeetPlayers extends Component {
 
     state = {
-        show:false
+        show: false
     }
 
     render() {
         return (
             <Reveal
                 fraction={0.7}
-                onReveal={()=>{
+                onReveal={() => {
                     this.setState({
-                        show:true
+                        show: true
                     })
                 }}
             >

@@ -59,9 +59,9 @@ class AdminMatches extends Component {
                                             <TableCell>
                                                 {
                                                     match.final === "Yes" ?
-                                                    <span className="matches_tag_red">Final</span>
-                                                    :
-                                                    <span className="matches_tag_green">Not yet played</span>
+                                                        <span className="matches_tag_red">Final</span>
+                                                        :
+                                                        <span className="matches_tag_green">Not yet played</span>
                                                 }
                                             </TableCell>
                                         </TableRow>

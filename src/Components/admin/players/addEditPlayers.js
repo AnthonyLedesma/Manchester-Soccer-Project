@@ -113,7 +113,6 @@ class AddEditPlayers extends Component {
 
         newFormdata[id] = newElement;
 
-
         this.setState({
             formError: false,
             formdata: newFormdata
@@ -132,7 +131,19 @@ class AddEditPlayers extends Component {
         }
 
         if (formIsValid) {
-            // submit form
+            if (this.state.formType === 'Edit player') {
+                // edit player
+            } else {
+                firebasePlayers.push(dataToSubmit).then(() => {
+                    this.props.history.push('/admin_players')
+                }).catch(e => {
+                    this.setState({
+                        formError: true
+                    })
+
+                })
+            }
+
         } else {
             this.setState({
                 formError: true
@@ -159,11 +170,11 @@ class AddEditPlayers extends Component {
     }
 
     resetImage() {
-        const newFormdata = {...this.state.formdata}
+        const newFormdata = { ...this.state.formdata }
         newFormdata['image'].value = '';
         newFormdata['image'].valid = false;
         this.setState({
-            defaultImg:'',
+            defaultImg: '',
             formdata: newFormdata
         })
     }

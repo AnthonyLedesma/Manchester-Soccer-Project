@@ -5,8 +5,8 @@ import Text from './Text';
 const Featured = () => {
     return (
         <div className="featured_wrapper">
-            <Stripes/>
-            <Text/>
+            <Stripes />
+            <Text />
         </div>
     );
 };

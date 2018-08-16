@@ -54,9 +54,9 @@ class Fileuploader extends Component {
         this.props.filename(filename);
     }
     uploadAgain = () => {
-        firebase.storage().ref(`players/${this.state.name}`).delete().then(function() {
+        firebase.storage().ref(`players/${this.state.name}`).delete().then(function () {
             console.log('image deleted sucessfully')
-        }).catch(function(error) {
+        }).catch(function (error) {
             console.log('image does not exist')
         })
         this.setState({
@@ -64,7 +64,7 @@ class Fileuploader extends Component {
             isUploading: false,
             fileURL: ''
         })
-        
+
         this.props.resetImage();
     }
 

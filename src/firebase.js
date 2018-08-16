@@ -5,13 +5,13 @@ import 'firebase/auth';
 import 'firebase/storage'
 
 const config = {
-    apiKey: "AIzaSyBJE-wLIQ6D68jQo7XcVAVggo1fcP3xfvQ",
-    authDomain: "manchester-soccer-project.firebaseapp.com",
-    databaseURL: "https://manchester-soccer-project.firebaseio.com",
-    projectId: "manchester-soccer-project",
-    storageBucket: "manchester-soccer-project.appspot.com",
-    messagingSenderId: "385866759216"
-  };
+  apiKey: "AIzaSyBJE-wLIQ6D68jQo7XcVAVggo1fcP3xfvQ",
+  authDomain: "manchester-soccer-project.firebaseapp.com",
+  databaseURL: "https://manchester-soccer-project.firebaseio.com",
+  projectId: "manchester-soccer-project",
+  storageBucket: "manchester-soccer-project.appspot.com",
+  messagingSenderId: "385866759216"
+};
 
 firebase.initializeApp(config);
 
@@ -21,4 +21,4 @@ const firebasePromotions = firebaseDB.ref('promotions');
 const firebaseTeams = firebaseDB.ref('teams');
 const firebasePlayers = firebaseDB.ref('players');
 
-export { firebase,firebaseMatches, firebasePromotions, firebaseDB, firebaseTeams, firebasePlayers }
+export { firebase, firebaseMatches, firebasePromotions, firebaseDB, firebaseTeams, firebasePlayers }

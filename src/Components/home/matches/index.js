@@ -11,21 +11,21 @@ const MatchesHome = () => {
                     size="50px"
                     color="#ffffff"
                 >
-                Matches
+                    Matches
                 </Tag>
 
-                
-                <Blocks/>
+
+                <Blocks />
                 <Tag
                     bck="#ffffff"
                     size="25px"
                     color="#0e1731"
                 >
-                See more matches
+                    See more matches
                 </Tag>
-                
+
             </div>
-            
+
         </div>
     );
 };

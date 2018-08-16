@@ -184,23 +184,23 @@ class AddEditMatch extends Component {
         })
     }
 
-    updateFields(match,teamOptions,teams,type,matchId) {
+    updateFields(match, teamOptions, teams, type, matchId) {
         const newFormdata = {
             ...this.state.formdata
         }
-        for(let key in newFormdata){
-            if(match){
+        for (let key in newFormdata) {
+            if (match) {
                 newFormdata[key].value = match[key];
                 newFormdata[key].valid = true;
             }
-            if(key === 'local' || key === 'away'){
+            if (key === 'local' || key === 'away') {
                 newFormdata[key].config.options = teamOptions;
             }
         }
 
         this.setState({
             matchId,
-            formType:type,
+            formType: type,
             formdata: newFormdata,
             teams
 
@@ -216,13 +216,13 @@ class AddEditMatch extends Component {
                     const teams = firebaseLooper(snapshot);
                     const teamOptions = [];
 
-                    snapshot.forEach((childSnapshot)=>{
+                    snapshot.forEach((childSnapshot) => {
                         teamOptions.push({
                             key: childSnapshot.val().shortName,
                             value: childSnapshot.val().shortName
                         })
                     })
-                    this.updateFields(match,teamOptions,teams,type,matchId);
+                    this.updateFields(match, teamOptions, teams, type, matchId);
                 })
         };
         if (!matchId) {
@@ -236,17 +236,17 @@ class AddEditMatch extends Component {
         }
     }
 
-    successForm(message){
+    successForm(message) {
         this.setState({
             formSuccess: message
         })
 
-        setTimeout(()=>{
+        setTimeout(() => {
             this.setState({
                 formSuccess: ''
             });
-            
-        },2000)
+
+        }, 2000)
     }
 
     submitForm(event) {
@@ -260,28 +260,28 @@ class AddEditMatch extends Component {
             formIsValid = this.state.formdata[key].valid && formIsValid;
         }
 
-        this.state.teams.forEach((team)=>{
-            if(team.shortName === dataToSubmit.local){
+        this.state.teams.forEach((team) => {
+            if (team.shortName === dataToSubmit.local) {
                 dataToSubmit['localThmb'] = team.thmb
             }
-            if(team.shortName === dataToSubmit.away){
+            if (team.shortName === dataToSubmit.away) {
                 dataToSubmit['awayThmb'] = team.thmb
             }
         })
 
         if (formIsValid) {
-            if(this.state.formType === 'Edit Match'){
+            if (this.state.formType === 'Edit Match') {
                 firebaseDB.ref(`matches/${this.state.matchId}`)
-                .update(dataToSubmit).then(()=>{
-                    this.successForm('Updated correctly');
-                }).catch((e)=>{
-                    this.setState({formError:true})
-                })
+                    .update(dataToSubmit).then(() => {
+                        this.successForm('Updated correctly');
+                    }).catch((e) => {
+                        this.setState({ formError: true })
+                    })
             } else {
-                firebaseMatches.push(dataToSubmit).then(()=>{
+                firebaseMatches.push(dataToSubmit).then(() => {
                     this.props.history.push('/admin_matches');
 
-                }).catch((e)=>{
+                }).catch((e) => {
                     this.setState({
                         formError: true
                     })
@@ -309,7 +309,7 @@ class AddEditMatch extends Component {
                             />
 
                             <div className="select_team_layout">
-                            <div className="label_inputs">Local</div>
+                                <div className="label_inputs">Local</div>
                                 <div className="wrapper">
                                     <div className="left">
                                         <FormField
@@ -329,7 +329,7 @@ class AddEditMatch extends Component {
                             </div>
 
                             <div className="select_team_layout">
-                            <div className="label_inputs">Away</div>
+                                <div className="label_inputs">Away</div>
                                 <div className="wrapper">
                                     <div className="left">
                                         <FormField
