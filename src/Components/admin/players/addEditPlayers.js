@@ -214,8 +214,6 @@ class AddEditPlayers extends Component {
         this.updateForm({}, 'image', filename)
     }
 
-
-
     resetImage() {
         const newFormdata = { ...this.state.formdata }
         newFormdata['image'].value = '';
@@ -226,7 +224,6 @@ class AddEditPlayers extends Component {
         })
     }
 
-
     deletePlayer() {
         console.log(this.props);
         firebaseDB.ref(`players/${this.state.playerId}`).remove().then(() => {
@@ -235,7 +232,6 @@ class AddEditPlayers extends Component {
             console.log(e);
         });
     }
-
 
     handleClickOpen = () => {
         this.setState({ deleteOpen: true });

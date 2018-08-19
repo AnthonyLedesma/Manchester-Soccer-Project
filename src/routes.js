@@ -4,6 +4,7 @@ import Layout from './Hoc/Layout';
 import { Switch } from 'react-router-dom';
 
 import Home from './Components/home';
+import TheTeam from './Components/the_team';
 import SignIn from './Components/sign_in';
 
 import Dashboard from './Components/admin/Dashboard'
@@ -28,6 +29,7 @@ const Routes = (props) => {
 
         <PublicRoute {...props} restricted={true} path="/sign_in" exact component={SignIn} />
         <PublicRoute {...props} restricted={false} path="/" exact component={Home} />
+        <PublicRoute {...props} restricted={false} path="/the_team" exact component={TheTeam} />
 
 
       </Switch>
