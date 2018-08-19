@@ -8,12 +8,22 @@ import { firebaseDB, firebasePlayers, firebase } from '../../../firebase';
 import Fileuploader from '../../ui/file_uploader';
 import defaultPlayerImage from '../../../Resources/images/stock_player_image.jpg';
 
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 
 
 
 class AddEditPlayers extends Component {
 
     state = {
+        deleteOpen: false,
+        deleteText: '',
         playerId: '',
         formType: '',
         formError: false,
@@ -98,6 +108,7 @@ class AddEditPlayers extends Component {
     }
 
 
+
     updateForm(element, id, content = '') {
         const newFormdata = { ...this.state.formdata };
         const newElement = { ...newFormdata[id] };
@@ -133,7 +144,17 @@ class AddEditPlayers extends Component {
 
         if (formIsValid) {
             if (this.state.formType === 'Edit player') {
-                // edit player
+                firebaseDB.ref(`players/${this.state.playerId}`).update(dataToSubmit).then(() => {
+                    console.log(this.props);
+                    this.props.history.push('/admin_players');
+                }).catch(e => {
+                    console.log(e);
+                    this.setState({
+                        formError: true
+                    })
+
+                });
+
             } else {
                 firebasePlayers.push(dataToSubmit).then(() => {
                     this.props.history.push('/admin_players')
@@ -151,13 +172,13 @@ class AddEditPlayers extends Component {
             })
         }
     }
-    
-    updateFields = (player,playerId,formType,defaultImg) => {
-        const newFormdata = {...this.state.formdata}
-        if (defaultImg === ''){
+
+    updateFields = (player, playerId, formType, defaultImg) => {
+        const newFormdata = { ...this.state.formdata }
+        if (defaultImg === '') {
             defaultImg = defaultPlayerImage;
         }
-        for(let key in newFormdata){
+        for (let key in newFormdata) {
             newFormdata[key].value = player[key];
             newFormdata[key].valid = true;
         }
@@ -179,22 +200,24 @@ class AddEditPlayers extends Component {
             })
         } else {
             firebaseDB.ref(`players/${playerId}`).once('value')
-            .then((snapshot) => {
-                const playerData = snapshot.val();
-                firebase.storage().ref('/players/')
-                .child(playerData.image).getDownloadURL()
-                .then( url => {
-                    this.updateFields(playerData,playerId,'Edit player',url)
-                }).catch(e=>{
-                    this.updateFields(playerData,playerId,'Edit player','')
+                .then((snapshot) => {
+                    const playerData = snapshot.val();
+                    firebase.storage().ref('/players/')
+                        .child(playerData.image).getDownloadURL()
+                        .then(url => {
+                            this.updateFields(playerData, playerId, 'Edit player', url)
+                        }).catch(e => {
+                            this.updateFields(playerData, playerId, 'Edit player', '')
+                        })
                 })
-            })
         }
     }
 
     storeFilename(filename) {
         this.updateForm({}, 'image', filename)
     }
+
+
 
     resetImage() {
         const newFormdata = { ...this.state.formdata }
@@ -205,6 +228,38 @@ class AddEditPlayers extends Component {
             formdata: newFormdata
         })
     }
+
+
+    deletePlayer() {
+        console.log(this.props);
+        firebaseDB.ref(`players/${this.state.playerId}`).remove().then(() => {
+            this.props.history.push('/admin_players');
+        }).catch(e => {
+            console.log(e);
+        });
+    }
+
+
+    handleClickOpen = () => {
+        this.setState({ deleteOpen: true });
+    };
+
+    handleTextField(e) {
+        this.setState({ deleteText: e.target.value });
+    }
+
+    handleClose = (id) => {
+        console.log(id);
+        if (id === 'delete') {
+            const inputVal = this.state.deleteText;
+            if (inputVal === 'remove') {
+                this.deletePlayer();
+            }
+        }
+        this.setState({ open: false });
+    };
+
+
 
     render() {
         return (
@@ -259,6 +314,7 @@ class AddEditPlayers extends Component {
                                 </div>
                                 : ''
                             }
+
                             <div className="admin_submit">
                                 <button onClick={(event) => this.submitForm(event)}>
                                     {this.state.formType}
@@ -266,7 +322,48 @@ class AddEditPlayers extends Component {
                             </div>
 
 
+
                         </form>
+                        {this.state.formType === "Edit player" ?
+
+                            <div>
+                                <div className="admin_delete">
+                                    <button onClick={() => this.handleClickOpen()}>
+                                        Delete player
+                                </button>
+                                </div>
+                                <Dialog
+                                    open={this.state.deleteOpen}
+                                    onClose={this.handleClose}
+                                    aria-labelledby="form-dialog-title"
+                                >
+                                    <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+                                    <DialogContent>
+                                        <DialogContentText>
+                                            Type 'remove' To Delete Selected Player
+                                    </DialogContentText>
+                                        <TextField
+                                            autoFocus
+                                            margin="dense"
+                                            id="confirm"
+                                            label="Type here"
+                                            type="text"
+                                            fullWidth
+                                            onChange={(e) => this.handleTextField(e)}
+                                        />
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={this.handleClose} color="primary">
+                                            Cancel
+                                    </Button>
+                                        <Button onClick={() => this.handleClose("delete")} color="primary">
+                                            Delete
+                                    </Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </div>
+
+                            : null}
                     </div>
 
                 </div>

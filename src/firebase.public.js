@@ -5,12 +5,12 @@ import 'firebase/auth';
 import 'firebase/storage'
 
 const config = {
-  apiKey: "AIzaSyBJE-wLIQ6D68jQo7XcVAVggo1fcP3xfvQ",
-  authDomain: "manchester-soccer-project.firebaseapp.com",
-  databaseURL: "https://manchester-soccer-project.firebaseio.com",
-  projectId: "manchester-soccer-project",
-  storageBucket: "manchester-soccer-project.appspot.com",
-  messagingSenderId: "385866759216"
+  apiKey: "XXX",
+  authDomain: "XXX",
+  databaseURL: "XXX",
+  projectId: "XXX",
+  storageBucket: "XXX",
+  messagingSenderId: "XXX"
 };
 
 firebase.initializeApp(config);

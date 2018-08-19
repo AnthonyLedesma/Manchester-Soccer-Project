@@ -617,8 +617,14 @@ footer .footer_discl {
 
 .admin_submit button {
     font-size: 20px;
-    margin: 40px 0px;
+    margin: 28px 0px;
     background: #009688;
+}
+
+.admin_delete button {
+    font-size: 20px;
+    margin: 0px 0px;
+    background: #e8091a;
 }
 
 /*=============================
