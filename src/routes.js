@@ -16,6 +16,8 @@ import AddEditMatch from './Components/admin/matches/addEditMatch';
 import AdminPlayers from './Components/admin/players';
 import AddEditPlayers from './Components/admin/players/addEditPlayers';
 
+import NotFound from './Components/ui/not_found';
+
 const Routes = (props) => {
   return (
     <Layout>
@@ -32,6 +34,8 @@ const Routes = (props) => {
         <PublicRoute {...props} restricted={false} path="/" exact component={Home} />
         <PublicRoute {...props} restricted={false} path="/the_team" exact component={TheTeam} />
         <PublicRoute {...props} restricted={false} path="/the_matches" exact component={TheMatches} />
+
+        <PublicRoute {...props} restricted={false} component={NotFound} />
 
       </Switch>
     </Layout>
