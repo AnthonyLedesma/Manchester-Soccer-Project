@@ -1,14 +1,14 @@
 
 
 
-#View the demo here: [Manchester Soccer Project](https://msp-database.firebaseapp.com/)
+# View the demo here: [Manchester Soccer Project](https://msp-database.firebaseapp.com/)
 
 
-##This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+## This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 [react](https://reactjs.org/docs/getting-started.html): "^16.4.2",
 
-###Project includes the following dependencies:
+### Project includes the following dependencies:
 
 
 [@material-ui/core](https://www.npmjs.com/package/@material-ui/core): "^1.2.0",
