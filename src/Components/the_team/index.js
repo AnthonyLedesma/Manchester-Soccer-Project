@@ -6,6 +6,8 @@ import Stripes from '../../Resources/images/stripes.png';
 import { firebasePlayers, firebase } from '../../firebase';
 import { firebaseLooper } from '../ui/misc';
 import { Promise } from 'core-js';
+import {Helmet} from "react-helmet";
+
 
 class TheTeam extends Component {
 
@@ -65,6 +67,10 @@ class TheTeam extends Component {
             <div className="the_team_container"
                 style={{ background: `url(${Stripes}) repeat` }}
             >
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>The Team - MSP - Anthony Ledesma</title>
+                </Helmet>
                 {!this.state.loading ?
                     <div>
                         <div className="team_category_wrapper">

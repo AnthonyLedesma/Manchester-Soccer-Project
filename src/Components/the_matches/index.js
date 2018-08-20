@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { firebaseMatches } from '../../firebase';
 import { firebaseLooper, reverseArray } from '../ui/misc';
 
 import LeagueTable from './table';
 import MatchesList from './matches_list';
+import { Helmet } from "react-helmet";
 
 
 class TheMatches extends Component {
@@ -31,7 +31,7 @@ class TheMatches extends Component {
     }
 
     showPlayed = (played) => {
-        const list = this.state.matches.filter((match)=>{
+        const list = this.state.matches.filter((match) => {
             return match.final === played;
         });
         this.setState({
@@ -42,7 +42,7 @@ class TheMatches extends Component {
     }
 
     showResult = (results) => {
-        const list = this.state.matches.filter((match)=>{
+        const list = this.state.matches.filter((match) => {
             return match.result === results;
         })
         this.setState({
@@ -59,6 +59,13 @@ class TheMatches extends Component {
 
         return (
             <div className="the_matches_container">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>The Matches - MSP - Anthony Ledesma</title>
+
+                </Helmet>
+
+
                 <div className="the_matches_wrapper">
                     <div className="left">
                         <div className="match_filters">
@@ -67,17 +74,17 @@ class TheMatches extends Component {
                                     Show Match
                                 </div>
                                 <div className="cont">
-                                    <div className={`option ${state.playedFilter === 'All'?'active':''}`}
+                                    <div className={`option ${state.playedFilter === 'All' ? 'active' : ''}`}
                                         onClick={() => this.showPlayed('All')}
                                     >
                                         All
                                     </div>
-                                    <div className={`option ${state.playedFilter === 'Yes'?'active':''}`}
+                                    <div className={`option ${state.playedFilter === 'Yes' ? 'active' : ''}`}
                                         onClick={() => this.showPlayed('Yes')}
                                     >
                                         Played
                                     </div>
-                                    <div className={`option ${state.playedFilter === 'No'?'active':''}`}
+                                    <div className={`option ${state.playedFilter === 'No' ? 'active' : ''}`}
                                         onClick={() => this.showPlayed('No')}
                                     >
                                         Not Played
@@ -91,22 +98,22 @@ class TheMatches extends Component {
                                     Result game
                                 </div>
                                 <div className="cont">
-                                    <div className={`option ${state.resultFilter === 'All'?'active':''}`}
+                                    <div className={`option ${state.resultFilter === 'All' ? 'active' : ''}`}
                                         onClick={() => this.showResult('All')}
                                     >
                                         All
                                     </div>
-                                    <div className={`option ${state.resultFilter === 'W'?'active':''}`}
+                                    <div className={`option ${state.resultFilter === 'W' ? 'active' : ''}`}
                                         onClick={() => this.showResult('W')}
                                     >
                                         W
                                     </div>
-                                    <div className={`option ${state.resultFilter === 'L'?'active':''}`}
+                                    <div className={`option ${state.resultFilter === 'L' ? 'active' : ''}`}
                                         onClick={() => this.showResult('L')}
                                     >
                                         L
                                     </div>
-                                    <div className={`option ${state.resultFilter === 'D'?'active':''}`}
+                                    <div className={`option ${state.resultFilter === 'D' ? 'active' : ''}`}
                                         onClick={() => this.showResult('D')}
                                     >
                                         D
@@ -124,6 +131,7 @@ class TheMatches extends Component {
                     </div>
                 </div>
             </div>
+
         );
     }
 }

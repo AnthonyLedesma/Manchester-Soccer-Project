@@ -12,6 +12,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { firebaseMatches } from '../../../firebase';
 import { firebaseLooper, reverseArray } from '../../ui/misc';
+import {Helmet} from "react-helmet";
+
 
 class AdminMatches extends Component {
 
@@ -34,6 +36,10 @@ class AdminMatches extends Component {
     render() {
         return (
             <AdminLayout>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>Admin Matches - MSP - Anthony Ledesma</title>
+                </Helmet>
                 <div>
                     <Paper>
                         <Table>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FormField from '../ui/form_fields';
 import { validate } from '../ui/misc';
 import { firebase } from '../../firebase';
-
+import { Helmet } from "react-helmet";
 
 
 class SignIn extends Component {
@@ -75,8 +75,8 @@ class SignIn extends Component {
 
         if (formIsValid) {
             firebase.auth()
-            .signInWithEmailAndPassword(dataToSubmit.email,dataToSubmit.password)
-            .then(() => {
+                .signInWithEmailAndPassword(dataToSubmit.email, dataToSubmit.password)
+                .then(() => {
                     this.props.history.push('/dashboard');
                 }).catch(error => {
                     this.setState({
@@ -95,6 +95,10 @@ class SignIn extends Component {
     render() {
         return (
             <div className="container">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>Sign In - MSP - Anthony Ledesma</title>
+                </Helmet>
                 <div className="signin_wrapper" style={{ margin: '100px' }}>
                     <form onSubmit={(event) => this.submitForm()}>
                         <h2>Please Login</h2>
