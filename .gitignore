@@ -2,6 +2,9 @@
 
 #ignore the firebase API connection file.
 /src/firebase.js
+.firebase/
+.firebaserc
+firebase.json
 
 #Ignode .vscode directory
 /.vscode
